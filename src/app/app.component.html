@@ -101,6 +101,9 @@
             class="text-danger">
             Maxlength of bio is 200
           </strong>
+          <strong *ngIf="f['bio'].touched && f['bio'].hasError('required')" class="text-danger">
+            Bio is a required Field.
+          </strong>
         </div>
 
         <div class="form-group">

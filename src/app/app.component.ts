@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
       email: new FormControl(null, [Validators.required, Validators.pattern(CustomRegex.email)], [EmailIdValidator.isEmailIdExist]),
       password: new FormControl(null, [Validators.required, Validators.pattern(CustomRegex.password)]),
       confirmPassword: new FormControl({ value: null, disabled: true }, [Validators.required, PasswordValidator.passwordMatch]),
-      bio: new FormControl(null, Validators.maxLength(200)),
+      bio: new FormControl(null, [Validators.required,Validators.maxLength(200)]),
       website: new FormControl(null, [Validators.required, Validators.pattern(CustomRegex.url)])
     })
   }
