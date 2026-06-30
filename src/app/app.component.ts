@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
       phone: new FormControl(null, [Validators.required, Validators.pattern(CustomRegex.phone)]),
       email: new FormControl(null, [Validators.required, Validators.pattern(CustomRegex.email)], [EmailIdValidator.isEmailIdExist]),
       password: new FormControl(null, [Validators.required, Validators.pattern(CustomRegex.password)]),
-      confirmPassword: new FormControl({value: null, disabled: true},[Validators.required, PasswordValidator.passwordMatch]),
+      confirmPassword: new FormControl({ value: null, disabled: true }, [Validators.required, PasswordValidator.passwordMatch]),
       bio: new FormControl(null, Validators.maxLength(200)),
       website: new FormControl(null, [Validators.required, Validators.pattern(CustomRegex.url)])
     })
@@ -42,7 +42,9 @@ export class AppComponent implements OnInit {
   }
 
   onRegister() {
-    console.log(this.registrationForm);
+    if (this.registrationForm.invalid) {
+      this.registrationForm.markAllAsTouched();
+    }
   }
 
 }
