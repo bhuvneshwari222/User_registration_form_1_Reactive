@@ -2,119 +2,138 @@
 <div class="container mt-3">
   <div class="row">
     <div class="col-md-12">
-      <form [formGroup]="registrationForm" (ngSubmit)="onRegister()">
-        <div class="form-group">
-          <label for="firstName">First Name<sup class="text-danger">*</sup></label>
-          <input formControlName="firstName" type="text" class="form-control">
+      <div class="card">
+        <div class="card-body">
+          <form [formGroup]="registrationForm" (ngSubmit)="onRegister()">
+            <div class="form-group">
+              <label for="firstName">First Name<sup class="text-danger">*</sup></label>
+              <input formControlName="firstName" type="text" class="form-control">
 
-          <strong *ngIf="f['firstName'].touched && f['firstName'].hasError('required')" class="text-danger">
-            First Name is a required Field.
-          </strong>
-          <strong *ngIf="f['firstName'].dirty && f['firstName'].hasError('minlength')" class="text-danger">
-            The minlength of the FirsName should be
-            {{f['firstName'].errors?.['minlength'].requiredLength}} and the actual length is
-            {{f['firstName'].errors?.['minlength'].actualLength}}
-          </strong>
-          <strong *ngIf="f['firstName'].dirty && f['firstName'].hasError('maxlength')" class="text-danger">
-            The maxlength of the FirsName should be
-            {{f['firstName'].errors?.['maxlength'].requiredLength}} and the actual length is
-            {{f['firstName'].errors?.['maxlength'].actualLength}}
-          </strong>
+              <strong *ngIf="f['firstName'].touched && f['firstName'].hasError('required')" class="text-danger">
+                First Name is a required Field.
+              </strong>
+              <strong *ngIf="f['firstName'].dirty && f['firstName'].hasError('minlength')" class="text-danger">
+                The minlength of the FirsName should be
+                {{f['firstName'].errors?.['minlength'].requiredLength}} and the actual length is
+                {{f['firstName'].errors?.['minlength'].actualLength}}
+              </strong>
+              <strong *ngIf="f['firstName'].dirty && f['firstName'].hasError('maxlength')" class="text-danger">
+                The maxlength of the FirsName should be
+                {{f['firstName'].errors?.['maxlength'].requiredLength}} and the actual length is
+                {{f['firstName'].errors?.['maxlength'].actualLength}}
+              </strong>
+            </div>
+
+            <div class="form-group">
+              <label for="lastName">Last Name<sup class="text-danger">*</sup></label>
+              <input formControlName="lastName" type="text" class="form-control">
+
+              <strong *ngIf="f['lastName'].touched && f['lastName'].hasError('required')" class="text-danger">
+                Last Name is a required Field.
+              </strong>
+              <strong *ngIf="f['lastName'].dirty && f['lastName'].hasError('minlength')" class="text-danger">
+                The minlength of the Last Name should be
+                {{f['lastName'].errors?.['minlength'].requiredLength}} and the actual length is
+                {{f['lastName'].errors?.['minlength'].actualLength}}
+              </strong>
+              <strong *ngIf="f['lastName'].dirty && f['lastName'].hasError('maxlength')" class="text-danger">
+                The maxlength of the Last Name should be
+                {{f['lastName'].errors?.['maxlength'].requiredLength}} and the actual length is
+                {{f['lastName'].errors?.['maxlength'].actualLength}}
+              </strong>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone<sup class="text-danger">*</sup></label>
+              <input formControlName="phone" type="text" class="form-control">
+
+              <strong *ngIf="f['phone'].touched && f['phone'].hasError('required')" class="text-danger">
+                Phone number is a required field.
+              </strong>
+              <strong *ngIf="f['phone'].dirty && f['phone'].hasError('pattern')" class="text-danger">
+                Invalid phone number. Plz enter 10 digit phone number.
+              </strong>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email<sup class="text-danger">*</sup></label>
+              <input formControlName="email" type="text" class="form-control">
+
+              <strong *ngIf="f['email'].touched && f['email'].hasError('required')" class="text-danger">Email is a
+                required
+                field</strong>
+              <strong *ngIf="f['email'].dirty && f['email'].hasError('pattern')" class="text-danger">Invalid
+                Email(xyz@gmail.com)</strong>
+              <strong *ngIf="f['email'].pending">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>Checking For Email
+              </strong>
+              <strong *ngIf="f['email'].valid" class="text-success">This email id is available</strong>
+              <strong *ngIf="f['email'].hasError('emailIdExists')"
+                class="text-danger">{{f['email'].errors?.['emailIdExists']}}</strong>
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input formControlName="password" type="text" class="form-control">
+
+              <strong *ngIf="f['password'].touched && f['password'].hasError('required')" class="text-danger">Password
+                is
+                required.</strong>
+              <strong *ngIf="f['password'].dirty && f['password'].hasError('pattern')" class="text-danger">Invalid
+                password(Length of password should be 8, It must contain one Upppercase, one lowercase, one number and
+                one
+                special character)</strong>
+            </div>
+
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password</label>
+              <input formControlName="confirmPassword" type="text" class="form-control">
+              <strong *ngIf="f['confirmPassword'].touched && f['confirmPassword'].hasError('required')"
+                class="text-danger">
+                Confirm Password is a required field.
+              </strong>
+              <strong *ngIf="f['confirmPassword'].dirty && f['confirmPassword'].hasError('passwordMismatch')"
+                class="text-danger">
+                Password and Confirm Password should be same
+              </strong>
+            </div>
+
+            <div class="form-group">
+              <label for="bio">Bio</label>
+              <textarea rows="4" formControlName="bio" id="bio" class="form-control"></textarea>
+              <strong *ngIf="f['bio'].dirty && f['bio'].hasError('maxlength')" class="text-danger">
+                Maxlength of bio is 200
+              </strong>
+              <strong *ngIf="f['bio'].touched && f['bio'].hasError('required')" class="text-danger">
+                Bio is a required Field.
+              </strong>
+            </div>
+
+            <div class="form-group">
+              <label for="website">Website</label>
+              <input formControlName="website" id="website" type="url" class="form-control"
+                placeholder="http://example.com">
+              <strong *ngIf="f['website'].touched && f['website'].hasError('required')" class="text-danger">website is a
+                required field.</strong>
+              <strong *ngIf="f['website'].dirty && f['website'].hasError('pattern')" class="text-danger">Plz Enter Valid
+                Website(http://example.com).</strong>
+            </div>
+
+            <button mat-raised-button color="primary" class="w-100">Register</button>
+          </form>
         </div>
-
-        <div class="form-group">
-          <label for="lastName">Last Name<sup class="text-danger">*</sup></label>
-          <input formControlName="lastName" type="text" class="form-control">
-
-          <strong *ngIf="f['lastName'].touched && f['lastName'].hasError('required')" class="text-danger">
-            Last Name is a required Field.
-          </strong>
-          <strong *ngIf="f['lastName'].dirty && f['lastName'].hasError('minlength')" class="text-danger">
-            The minlength of the Last Name should be
-            {{f['lastName'].errors?.['minlength'].requiredLength}} and the actual length is
-            {{f['lastName'].errors?.['minlength'].actualLength}}
-          </strong>
-          <strong *ngIf="f['lastName'].dirty && f['lastName'].hasError('maxlength')" class="text-danger">
-            The maxlength of the Last Name should be
-            {{f['lastName'].errors?.['maxlength'].requiredLength}} and the actual length is
-            {{f['lastName'].errors?.['maxlength'].actualLength}}
-          </strong>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-10 offset-md-1">
+      <div class="card">
+        <div class="card-body">
+          {{registrationForm.value | json}}
         </div>
-
-        <div class="form-group">
-          <label for="phone">Phone<sup class="text-danger">*</sup></label>
-          <input formControlName="phone" type="text" class="form-control">
-
-          <strong *ngIf="f['phone'].touched && f['phone'].hasError('required')" class="text-danger">
-            Phone number is a required field.
-          </strong>
-          <strong *ngIf="f['phone'].dirty && f['phone'].hasError('pattern')" class="text-danger">
-            Invalid phone number. Plz enter 10 digit phone number.
-          </strong>
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email<sup class="text-danger">*</sup></label>
-          <input formControlName="email" type="text" class="form-control">
-
-          <strong *ngIf="f['email'].touched && f['email'].hasError('required')" class="text-danger">Email is a required
-            field</strong>
-          <strong *ngIf="f['email'].dirty && f['email'].hasError('pattern')" class="text-danger">Invalid
-            Email(xyz@gmail.com)</strong>
-          <strong *ngIf="f['email'].pending">
-            <div class="spinner-border text-primary" role="status">
-              <span class="sr-only">Loading...</span>
-            </div>Checking For Email
-          </strong>
-          <strong *ngIf="f['email'].valid" class="text-success">This email id is available</strong>
-          <strong *ngIf="f['email'].hasError('emailIdExists')"
-            class="text-danger">{{f['email'].errors?.['emailIdExists']}}</strong>
-        </div>
-
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input formControlName="password" type="text" class="form-control">
-
-          <strong *ngIf="f['password'].touched && f['password'].hasError('required')" class="text-danger">Password is
-            required.</strong>
-          <strong *ngIf="f['password'].dirty && f['password'].hasError('pattern')" class="text-danger">Invalid
-            password(Length of password should be 8, It must contain one Upppercase, one lowercase, one number and one
-            special character)</strong>
-        </div>
-
-        <div class="form-group">
-          <label for="confirmPassword">Confirm Password</label>
-          <input formControlName="confirmPassword" type="text" class="form-control">
-          <strong *ngIf="f['confirmPassword'].touched && f['confirmPassword'].hasError('required')" class="text-danger">
-            Confirm Password is a required field.
-          </strong>
-          <strong *ngIf="f['confirmPassword'].dirty && f['confirmPassword'].hasError('passwordMismatch')"
-            class="text-danger">
-            Password and Confirm Password should be same
-          </strong>
-        </div>
-
-        <div class="form-group">
-          <label for="bio">Bio</label>
-          <textarea rows="4" formControlName="bio" id="bio" class="form-control"></textarea>
-          <strong  *ngIf="f['bio'].dirty && f['bio'].hasError('maxlength')"
-            class="text-danger">
-            Maxlength of bio is 200
-          </strong>
-          <strong *ngIf="f['bio'].touched && f['bio'].hasError('required')" class="text-danger">
-            Bio is a required Field.
-          </strong>
-        </div>
-
-        <div class="form-group">
-          <label for="website">Website</label>
-          <input formControlName="website" id="website" type="url" class="form-control" placeholder="http://example.com">
-          <strong *ngIf="f['website'].touched && f['website'].hasError('required')" class="text-danger">website is a required field.</strong>
-          <strong *ngIf="f['website'].dirty && f['website'].hasError('pattern')" class="text-danger">Plz Enter Valid Website(http://example.com).</strong>
-        </div>
-
-        <button mat-raised-button color="primary" class="w-100">Register</button>
-      </form>
+      </div>
     </div>
   </div>
 </div>

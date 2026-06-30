@@ -44,6 +44,8 @@ export class AppComponent implements OnInit {
   onRegister() {
     if (this.registrationForm.invalid) {
       this.registrationForm.markAllAsTouched();
+    }else{
+      this.registrationForm.reset();
     }
   }
 
